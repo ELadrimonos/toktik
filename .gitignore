@@ -44,4 +44,4 @@ app.*.map.json
 
 
 # Videos pesan mucho para GitHub, descargar de Internet
-/assets/videos
+/assets/videos/
