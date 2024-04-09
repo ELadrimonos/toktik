@@ -12,15 +12,24 @@ class VideoButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _CustomIconButton(value: video.likes, iconData: Icons.favorite, iconColor: Colors.red),
-        _CustomIconButton(value: video.views, iconData: Icons.remove_red_eye_outlined),
+        _CustomIconButton(
+            value: video.likes,
+            iconData: Icons.favorite,
+            iconColor: Colors.red),
+        _CustomIconButton(
+            value: video.views, iconData: Icons.remove_red_eye_outlined),
         const _CustomIconButton(value: 0, iconData: Icons.share_outlined),
-        const SizedBox(height: 50,),
+        const SizedBox(
+          height: 50,
+        ),
         SpinPerfect(
             infinite: true,
             duration: const Duration(seconds: 5),
-            child: const _CustomIconButton(value: 0, iconData: Icons.play_circle_outline)),
-
+            child: Pulse(
+                infinite: true,
+                duration: const Duration(seconds: 3),
+                child: const _CustomIconButton(
+                    value: 0, iconData: Icons.play_circle_outline))),
       ],
     );
   }
@@ -32,10 +41,8 @@ class _CustomIconButton extends StatelessWidget {
   final Color? color;
 
   const _CustomIconButton(
-      {super.key,
-      required this.value,
-      required this.iconData,
-      iconColor}): color = iconColor ?? Colors.white;
+      {required this.value, required this.iconData, iconColor})
+      : color = iconColor ?? Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +54,7 @@ class _CustomIconButton extends StatelessWidget {
             color: color,
             size: 40,
           )),
-      if (value > 0)
-      Text(HumanFormats.humanReadableNumber(value.toDouble()))
+      if (value > 0) Text(HumanFormats.humanReadableNumber(value.toDouble()))
     ]);
   }
 }
